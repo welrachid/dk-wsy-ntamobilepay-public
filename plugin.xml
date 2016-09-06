@@ -30,7 +30,7 @@
         <header-file src="src/ios/MobilePayManager.h" />
         <header-file src="src/ios/MobilePayPayment.h" />
         <header-file src="src/ios/MobilePaySuccessfulPayment.h" />
-		<framework src="src/ios/libMobilePayManager1.7.1.a" custom="true" />
+		<framework src="src/ios/libMobilePayManager1.7.1.a" custom="true" type="projectReference" target="all" arch="arm64" /> />
         <source-file src="src/ios/Nta_mobilepay.m" />
     </platform>
 </plugin>
