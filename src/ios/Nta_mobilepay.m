@@ -50,6 +50,7 @@
     NSString* company_id = [command.arguments objectAtIndex:2];
     NSString* auherning = @"15";
     NSString* valby = @"16";
+    NSString* horsens = @"45";
 
 
     if([company_id isEqualToString:auherning]){
@@ -57,6 +58,9 @@
     }
     if([company_id isEqualToString:valby]) {
 	[[MobilePayManager sharedInstance] setupWithMerchantId:@"APPDK8749124001" merchantUrlScheme:@"ntamobilepaygrabngofeedyourmind" country:MobilePayCountry_Denmark];
+    }
+    if([company_id isEqualToString:horsens]) {
+	[[MobilePayManager sharedInstance] setupWithMerchantId:@"APPDK2871444001" merchantUrlScheme:@"ntamobilepaygrabngofeedyourmind" country:MobilePayCountry_Denmark];
     }
     CDVPluginResult* pluginResult = nil;
     float price_2 = [price floatValue];

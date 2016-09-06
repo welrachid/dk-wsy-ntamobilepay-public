@@ -36,8 +36,6 @@ public class Nta_mobilepay extends CordovaPlugin {
 				MobilePay.getInstance().init("APPDK8749124001", Country.DENMARK);
 			} else if("45".equals(args.getString(2))){
 				MobilePay.getInstance().init("APPDK2871444001", Country.DENMARK);
-			} else if("1".equals(args.getString(2))){
-				MobilePay.getInstance().init("APPDK0000000000", Country.DENMARK);
 			} else{
 				return false;
 			}
