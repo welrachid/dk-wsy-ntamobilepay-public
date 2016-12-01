@@ -30,15 +30,7 @@ public class Nta_mobilepay extends CordovaPlugin {
 			return true;
 		}
 		if ("makePayment".equals(action)) {
-			if("15".equals(args.getString(2))){
-				MobilePay.getInstance().init("APPDK8490224001", Country.DENMARK);
-			} else if("16".equals(args.getString(2))){
-				MobilePay.getInstance().init("APPDK8749124001", Country.DENMARK);
-			} else if("45".equals(args.getString(2))){
-				MobilePay.getInstance().init("APPDK2871444001", Country.DENMARK);
-			} else{
-				return false;
-			}
+			MobilePay.getInstance().init(args.getString(2), Country.DENMARK);
 
 
 	// Check if the MobilePay app is installed on the device.
@@ -77,8 +69,8 @@ public class Nta_mobilepay extends CordovaPlugin {
 		MobilePay.getInstance().handleResult(resultCode, data, new ResultCallback() {
 		  @Override
 		  public void onSuccess(SuccessResult result) {
-			//Toast.makeText(webView.getContext(), "Transaktionsid: "+result.getTransactionId() + "Order: "+result.getOrderId(), Toast.LENGTH_LONG).show();
-			  webView.loadUrl("file:///android_asset/www/receipt.html?uuid=" +result.getOrderId()+"&transaction_id="+result.getTransactionId()+"&signature="+result.getSignature()+"&java=1");
+			  // Toast.makeText(webView.getContext(), "Transaktionsid: "+result.getTransactionId() + "Order: "+result.getOrderId(), Toast.LENGTH_LONG).show();
+			  webView.loadUrl("file:///android_asset/www/index.html?orderid=" +result.getOrderId()+"&transactionid="+result.getTransactionId()+"#mbcallback");
 			// The payment succeeded - you can deliver the product.
 		  }
 		  @Override
