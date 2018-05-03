@@ -47,7 +47,6 @@
 {
     NSNumber* price = [command.arguments objectAtIndex:0];
     NSString* uuid = [command.arguments objectAtIndex:1];
-    NSString* company_id = [command.arguments objectAtIndex:2];
     NSString* appswitch_id = [command.arguments objectAtIndex:2];
     NSString* url_scheme = [command.arguments objectAtIndex:3]; //ntamobilepaygrabngofeedyourmind
 
