@@ -1,6 +1,6 @@
 var exec = require('cordova/exec');
 
-exports.makePayment = function(price,uuid,appswitch_id) {
+exports.makePayment = function(price,uuid,appswitch_id,url_scheme) {
 	console.log("Vi har følgende uuid:"+uuid);
 	success_ = function(data){
 		console.log("We got a success back: "+data);
@@ -8,7 +8,7 @@ exports.makePayment = function(price,uuid,appswitch_id) {
 	error_ = function(data){
 		console.log("We got an error back: "+data);
 	}
-    exec(success_, error_, "Nta_mobilepay", "makePayment", [price,uuid,appswitch_id]);
+    exec(success_, error_, "Nta_mobilepay", "makePayment", [price,uuid,appswitch_id,url_scheme]);
 };
 exports.echo = function(arg0, success, error) {
     exec(success, error, "Nta_mobilepay", "echo", [arg0]);

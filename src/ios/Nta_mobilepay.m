@@ -49,22 +49,9 @@
     NSString* uuid = [command.arguments objectAtIndex:1];
     NSString* company_id = [command.arguments objectAtIndex:2];
     NSString* appswitch_id = [command.arguments objectAtIndex:2];
-    NSString* auherning = @"15";
-    NSString* valby = @"16";
-    NSString* horsens = @"45";
+    NSString* url_scheme = [command.arguments objectAtIndex:3]; //ntamobilepaygrabngofeedyourmind
 
-    /*
-    if([company_id isEqualToString:auherning]){
-	[[MobilePayManager sharedInstance] setupWithMerchantId:@"APPDK8490224001" merchantUrlScheme:@"ntamobilepaygrabngofeedyourmind" country:MobilePayCountry_Denmark];
-    }
-    if([company_id isEqualToString:valby]) {
-	[[MobilePayManager sharedInstance] setupWithMerchantId:@"APPDK8749124001" merchantUrlScheme:@"ntamobilepaygrabngofeedyourmind" country:MobilePayCountry_Denmark];
-    }
-    if([company_id isEqualToString:horsens]) {
-	[[MobilePayManager sharedInstance] setupWithMerchantId:@"APPDK2871444001" merchantUrlScheme:@"ntamobilepaygrabngofeedyourmind" country:MobilePayCountry_Denmark];
-    }
-    */
-    [[MobilePayManager sharedInstance] setupWithMerchantId:appswitch_id merchantUrlScheme:@"ntamobilepaygrabngofeedyourmind" country:MobilePayCountry_Denmark];
+    [[MobilePayManager sharedInstance] setupWithMerchantId:appswitch_id merchantUrlScheme:url_scheme country:MobilePayCountry_Denmark];
 
     CDVPluginResult* pluginResult = nil;
     float price_2 = [price floatValue];
