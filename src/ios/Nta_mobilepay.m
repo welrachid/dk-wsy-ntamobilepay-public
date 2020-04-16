@@ -45,25 +45,24 @@
 }
 - (void)makePayment:(CDVInvokedUrlCommand*)command
 {
-    NSNumber* price = [command.arguments objectAtIndex:0];
+    NSDecimalNumber* price =[[NSDecimalNumber alloc] initWithString:[command.arguments objectAtIndex:0]];
     NSString* uuid = [command.arguments objectAtIndex:1];
     NSString* appswitch_id = [command.arguments objectAtIndex:2];
     NSString* url_scheme = [command.arguments objectAtIndex:3]; //ntamobilepaygrabngofeedyourmind
 
-    [[MobilePayManager sharedInstance] setupWithMerchantId:appswitch_id merchantUrlScheme:url_scheme country:MobilePayCountry_Denmark];
+    [[MobilePayManager sharedInstance] setupWithMerchantId:appswitch_id merchantUrlScheme:url_scheme timeoutSeconds:90 captureType:MobilePayCaptureType_Reserve country:MobilePayCountry_Denmark];
 
     CDVPluginResult* pluginResult = nil;
-    float price_2 = [price floatValue];
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"makepaymentSuccess"];
   
-    MobilePayPayment *payment = [[MobilePayPayment alloc]initWithOrderId:uuid productPrice:price_2];
+    MobilePayPayment *payment = [[MobilePayPayment alloc]initWithOrderId:uuid productPrice:price];
     //No need to start a payment if one or more parameters are missing
     if (payment && (payment.orderId.length > 0) && (payment.productPrice >= 0)) {
         
-        [[MobilePayManager sharedInstance]beginMobilePaymentWithPayment:payment error:^(NSError * _Nonnull error) {
+        [[MobilePayManager sharedInstance]beginMobilePaymentWithPayment:payment error:^(MobilePayErrorPayment * _Nullable MobilePayErrorPayment) {
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.localizedDescription
-                                                            message:[NSString stringWithFormat:@"reason: %@, suggestion: %@",error.localizedFailureReason, error.localizedRecoverySuggestion]
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:MobilePayErrorPayment.error.localizedDescription
+                                                            message:[NSString stringWithFormat:@"reason: %@, suggestion: %@",MobilePayErrorPayment.error.localizedFailureReason, MobilePayErrorPayment.error.localizedRecoverySuggestion]
                                                            delegate:self
                                                   cancelButtonTitle:@"Cancel"
                                                   otherButtonTitles:@"Install MobilePay",nil];
@@ -124,10 +123,10 @@
         NSLog(@"MobilePay purchase succeeded: Your have now paid for order with id '%@' and MobilePay transaction id '%@' and the amount withdrawn from the card is: '%@'", orderId, transactionId,amountWithdrawnFromCard);
         //[ViewHelper showAlertWithTitle:@"MobilePay Succeeded" message:[NSString stringWithFormat:@"You have now paid with MobilePay. Your MobilePay transactionId is '%@'", transactionId]];
 
-    } error:^(NSError * _Nonnull error) {
-        NSDictionary *dict = error.userInfo;
+    } error:^(MobilePayErrorPayment * _Nullable MobilePayErrorPayment) {
+        NSDictionary *dict = MobilePayErrorPayment.error.userInfo;
         NSString *errorMessage = [dict valueForKey:NSLocalizedFailureReasonErrorKey];
-        NSLog(@"MobilePay purchase failed:  Error code '%li' and message '%@'",(long)error.code,errorMessage);
+        NSLog(@"MobilePay purchase failed:  Error code '%li' and message '%@'",(long)MobilePayErrorPayment.error.code,errorMessage);
         //[ViewHelper showAlertWithTitle:[NSString stringWithFormat:@"MobilePay Error %li",(long)error.code] message:errorMessage];
 
         //TODO: show an appropriate error message to the user. Check MobilePayManager.h for a complete description of the error codes

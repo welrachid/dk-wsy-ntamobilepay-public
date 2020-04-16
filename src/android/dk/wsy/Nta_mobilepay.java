@@ -7,13 +7,13 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
 import android.widget.Toast;
-import dk.danskebank.mobilepay.sdk.Country;
-import dk.danskebank.mobilepay.sdk.MobilePay;
-import dk.danskebank.mobilepay.sdk.model.Payment;
-import dk.danskebank.mobilepay.sdk.ResultCallback;
-import dk.danskebank.mobilepay.sdk.model.FailureResult;
-import dk.danskebank.mobilepay.sdk.model.Payment;
-import dk.danskebank.mobilepay.sdk.model.SuccessResult;
+import dk.mobilepay.sdk.CaptureType;
+import dk.mobilepay.sdk.Country;
+import dk.mobilepay.sdk.MobilePay;
+import dk.mobilepay.sdk.ResultCallback;
+import dk.mobilepay.sdk.model.FailureResult;
+import dk.mobilepay.sdk.model.Payment;
+import dk.mobilepay.sdk.model.SuccessResult;
 
 import android.provider.Settings;
 import android.content.Intent;
@@ -78,7 +78,7 @@ public class Nta_mobilepay extends CordovaPlugin {
 			// The payment failed - show an appropriate error message to the user. Consult the MobilePay class documentation for possible error codes.
 		  }
 		  @Override
-		  public void onCancel() {
+		  public void onCancel(String OrderId) {
 			Toast.makeText(webView.getContext(), "Du færdiggjorde ikke din betaling", Toast.LENGTH_LONG).show();
 			// The payment was cancelled.
 		  }

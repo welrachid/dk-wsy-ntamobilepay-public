@@ -1,6 +1,6 @@
 {
   "name": "nta_mobilepay",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dk-wsy-ntamobilepay Cordova Plugin",
   "cordova": {
     "id": "dk-wsy-ntamobilepay",
@@ -11,21 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/welrachid/nta_mobilepay.git"
+    "url": "git+https://github.com/welrachid/dk-wsy-ntamobilepay-public.git"
   },
   "keywords": [
     "cordova",
-    "demo",
     "nta_mobilepay",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios",
     "cordova-browser"
   ],
-  "author": "WSY",
-  "license": "MIT",
+  "author": "Wel Rachid, We-serve-you ApS",
+  "license": "Private license. Agreement with WSY before use.",
   "bugs": {
-    "url": "https://github.com/welrachid/nta_mobilepay/issues"
+    "url": "https://github.com/welrachid/dk-wsy-ntamobilepay-public/issues"
   },
-  "homepage": "https://github.com/welrachid/nta_mobilepay#readme"
+  "homepage": "https://github.com/welrachid/dk-wsy-ntamobilepay-public#readme"
 }

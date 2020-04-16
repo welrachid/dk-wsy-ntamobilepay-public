@@ -15,7 +15,7 @@
 			</feature>
 		</config-file>
         <source-file src="src/android/dk/wsy/Nta_mobilepay.java" target-dir="src/dk/wsy" />
-		<source-file src="src/android/mobilepay-appswitch-1.8.1.jar" target-dir="libs/" />
+		<source-file src="src/android/mobilepay-appswitch-2.2.0.jar" target-dir="libs/" />
 
 	</platform>
     <platform name="ios">
@@ -29,8 +29,9 @@
         <header-file src="src/ios/MobilePayCancelledPayment.h" />
         <header-file src="src/ios/MobilePayManager.h" />
         <header-file src="src/ios/MobilePayPayment.h" />
+        <header-file src="src/ios/MobilePayErrorPayment.h" />
         <header-file src="src/ios/MobilePaySuccessfulPayment.h" />
-		<source-file src="src/ios/libMobilePayManager1.7.1.a" framework="true" />
+		<source-file src="src/ios/libMobilePayManager2.2.0.a" framework="true" />
         <source-file src="src/ios/Nta_mobilepay.m" />
     </platform>
 </plugin>
